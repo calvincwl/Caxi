@@ -7,7 +7,7 @@ extern Caxi::Application* Caxi::CreateApplication();
 
 int main(int argc, char** argv)
 {
-	printf("Hello World!");
+	printf("Hello World!\n");
 	auto app = Caxi::CreateApplication();
 	app->Run();
 	delete app;
