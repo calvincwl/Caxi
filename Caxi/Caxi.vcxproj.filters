@@ -24,6 +24,9 @@
     <ClInclude Include="src\Caxi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Caxi\EntryPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Caxi\Application.cpp">

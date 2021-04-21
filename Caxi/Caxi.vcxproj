@@ -69,7 +69,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);CX_PLATFORM_WINDOWS;CX_BUILD_DLL</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -83,6 +83,7 @@
     <ClInclude Include="src\Caxi.h" />
     <ClInclude Include="src\Caxi\Application.h" />
     <ClInclude Include="src\Caxi\Core.h" />
+    <ClInclude Include="src\Caxi\EntryPoint.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Caxi\Application.cpp" />

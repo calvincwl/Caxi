@@ -14,11 +14,7 @@ public:
 	}
 };
 
-int main()
+Caxi::Application* Caxi::CreateApplication()
 {
-	Game* game = new Game();
-	game->Run();
-	delete game;
-
-	return 0;
+	return new Game();
 }
