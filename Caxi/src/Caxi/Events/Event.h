@@ -63,19 +63,18 @@ namespace Caxi
 
     class EventDispatcher
     {
-    public:
-        EventDispatcher(Event& event)
-            : m_Event(event)
-        {
-        }
+        template<typename T>
+        using EventFn = std::function<bool(T&)>;
 
-        // F will be deduced by the compiler
-        template<typename T, typename F>
-        bool Dispatch(const F& func)
+    public:
+        EventDispatcher(Event& event) : m_Event(event) {}
+        
+        template<typename T>
+        bool Dispatch(EventFn<T> func)
         {
             if (m_Event.GetEventType() == T::GetStaticType())
             {
-                m_Event.Handled |= func(static_cast<T&>(m_Event));
+                m_Event.m_Handled = func(*static_cast<T*>(&m_Event));
                 return true;
             }
             return false;

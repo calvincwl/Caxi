@@ -1,24 +1,25 @@
 #pragma once
 
-#include "Caxi/Events/Event.h"
+#include "Event.h"
+#include <sstream>
 
 namespace Caxi
 {
-    class WindowResizeEvent : public Event
+    class CAXI_API WindowResizeEvent : public Event
     {
     public:
         WindowResizeEvent(unsigned int width, unsigned int height)
             : m_Width(width), m_Height(height) {}
 
-        unsigned int GetWidth() const { return m_Width; }
-        unsigned int GetHeight() const { return m_Height; }
+        uint32_t GetWidth() const { return m_Width; }
+        uint32_t GetHeight() const { return m_Height; }
 
-        //std::string ToString() const override
-        //{
-        //    std::stringstream ss;
-        //    ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
-        //    return ss.str();
-        //}
+        std::string ToString() const override
+        {
+            std::stringstream ss;
+            ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
+            return ss.str();
+        }
 
         EVENT_CLASS_TYPE(WindowResize)
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
@@ -27,7 +28,7 @@ namespace Caxi
         unsigned int m_Width, m_Height;
     };
 
-    class WindowCloseEvent : public Event
+    class CAXI_API WindowCloseEvent : public Event
     {
     public:
         WindowCloseEvent() = default;
@@ -36,7 +37,7 @@ namespace Caxi
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
     };
 
-    class AppTickEvent : public Event
+    class CAXI_API AppTickEvent : public Event
     {
     public:
         AppTickEvent() = default;
@@ -45,7 +46,7 @@ namespace Caxi
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
     };
 
-    class AppUpdateEvent : public Event
+    class CAXI_API AppUpdateEvent : public Event
     {
     public:
         AppUpdateEvent() = default;
@@ -54,7 +55,7 @@ namespace Caxi
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
     };
 
-    class AppRenderEvent : public Event
+    class CAXI_API AppRenderEvent : public Event
     {
     public:
         AppRenderEvent() = default;
