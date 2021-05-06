@@ -1,3 +1,6 @@
 [submodule "Caxi/vendor/spdlog"]
 	path = Caxi/vendor/spdlog
 	url = git@github.com:gabime/spdlog.git
+[submodule "Caxi/vendor/GLFW"]
+	path = Caxi/vendor/GLFW
+	url = git@github.com:glfw/glfw.git

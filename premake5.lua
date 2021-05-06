@@ -1,105 +1,121 @@
 workspace "Caxi"
-	architecture "x64"
+    location "build"
+    architecture "x86_64"
+    startproject "Game"
 
-	configurations
-	{
-		"Debug",
-		"Release",
-		"Dist"
-	}
+    configurations
+    {
+        "Debug",
+        "Release",
+        "Dist"
+    }
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Caxi/vendor/GLFW/include"
+
+include "vendor/premake/GLFW.lua"
+
 project "Caxi"
-	location "Caxi"
-	kind "SharedLib"
-	language "C++"
+    location "build"
+    kind "SharedLib"
+    language "C++"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	files
-	{
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
-	}
+    files
+    {
+        "%{prj.name}/src/**.h",
+        "%{prj.name}/src/**.cpp"
+    }
 
-	includedirs
-	{
-		"%{prj.name}/vendor/spdlog/include"
-	}
+    includedirs
+    {
+        "%{prj.name}/src",
+        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.GLFW}"
+    }
 
-	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
-		systemversion "latest"
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
+    }
 
-		defines
-		{
-			"CX_PLATFORM_WINDOWS",
-			"CX_BUILD_DLL"
-		}
+    filter "system:windows"
+        cppdialect "C++17"
+        staticruntime "On"
+        systemversion "latest"
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Game")
-		}
+        defines
+        {
+            "CX_PLATFORM_WINDOWS",
+            "CX_BUILD_DLL"
+        }
 
-	filter "configurations:Debug"
-		defines "CX_DEBUG"
-		symbols "On"
+        postbuildcommands
+        {
+            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Game")
+        }
 
-	filter "configurations:Release"
-		defines "CX_RELEASE"
-		optimize "On"
+    filter "configurations:Debug"
+        defines "CX_DEBUG"
+        symbols "On"
 
-	filter "configurations:Dist"
-		defines "CX_DIST"
-		optimize "On"
+    filter "configurations:Release"
+        defines "CX_RELEASE"
+        optimize "On"
+
+    filter "configurations:Dist"
+        defines "CX_DIST"
+        optimize "On"
 
 project "Game"
-	location "Game"
-	kind "ConsoleApp"
-	language "C++"
+    location "build"
+    kind "ConsoleApp"
+    language "C++"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	files
-	{
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
-	}
+    files
+    {
+        "%{prj.name}/src/**.h",
+        "%{prj.name}/src/**.cpp"
+    }
 
-	includedirs
-	{
-		"Caxi/vendor/spdlog/include",
-		"Caxi/src"
-	}
+    includedirs
+    {
+        "Caxi/src",
+        "Caxi/vendor/spdlog/include"
+    }
 
-	links
-	{
-		"Caxi"
-	}
+    links
+    {
+        "Caxi"
+    }
 
-	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
-		systemversion "latest"
+    filter "system:windows"
+        cppdialect "C++17"
+        staticruntime "On"
+        systemversion "latest"
 
-		defines
-		{
-			"CX_PLATFORM_WINDOWS"
-		}
+        defines
+        {
+            "CX_PLATFORM_WINDOWS"
+        }
 
-	filter "configurations:Debug"
-		defines "CX_DEBUG"
-		symbols "On"
+    filter "configurations:Debug"
+        defines "CX_DEBUG"
+        symbols "On"
 
-	filter "configurations:Release"
-		defines "CX_RELEASE"
-		optimize "On"
+    filter "configurations:Release"
+        defines "CX_RELEASE"
+        optimize "On"
 
-	filter "configurations:Dist"
-		defines "CX_DIST"
-		optimize "On"
+    filter "configurations:Dist"
+        defines "CX_DIST"
+        optimize "On"

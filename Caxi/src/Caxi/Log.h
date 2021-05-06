@@ -1,21 +1,22 @@
 #pragma once
 #include "Core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 
 namespace Caxi
 {
-	class CAXI_API Log
-	{
-	public:
-		static void Init();
+    class CAXI_API Log
+    {
+    public:
+        static void Init();
 
-		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return s_CoreLogger; }
-		inline static std::shared_ptr<spdlog::logger>& GetClientLogger() { return s_ClientLogger; }
+        inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return s_CoreLogger; }
+        inline static std::shared_ptr<spdlog::logger>& GetClientLogger() { return s_ClientLogger; }
 
-	private:
-		static std::shared_ptr<spdlog::logger> s_CoreLogger;
-		static std::shared_ptr<spdlog::logger> s_ClientLogger;
-	};
+    private:
+        static std::shared_ptr<spdlog::logger> s_CoreLogger;
+        static std::shared_ptr<spdlog::logger> s_ClientLogger;
+    };
 }
 
 // Core log macros
@@ -28,7 +29,7 @@ namespace Caxi
 
 // Client log macros
 #define CX_TRACE(...) Caxi::Log::GetClientLogger()->trace(__VA_ARGS__);
-#define CX_DEBUG(...) Caxi::Log::GetClientLogger()->debug(__VA_ARGS__);
+//#define CX_DEBUG(...) Caxi::Log::GetClientLogger()->debug(__VA_ARGS__);
 #define CX_INFO(...) Caxi::Log::GetClientLogger()->info(__VA_ARGS__);
 #define CX_WARN(...) Caxi::Log::GetClientLogger()->warn(__VA_ARGS__);
 #define CX_ERROR(...) Caxi::Log::GetClientLogger()->error(__VA_ARGS__);

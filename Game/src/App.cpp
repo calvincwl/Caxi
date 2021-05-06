@@ -3,18 +3,18 @@
 class Game : public Caxi::Application
 {
 public:
-	Game()
-	{
-		
-	}
+    Game()
+    {
+        
+    }
 
-	~Game()
-	{
-		
-	}
+    ~Game()
+    {
+        
+    }
 };
 
 Caxi::Application* Caxi::CreateApplication()
 {
-	return new Game();
+    return new Game();
 }
