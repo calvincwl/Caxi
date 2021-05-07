@@ -26,6 +26,9 @@ project "Caxi"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+    pchheader "cxpch.h"
+    pchsource "Caxi/src/cxpch.cpp"
+
     files
     {
         "%{prj.name}/src/**.h",

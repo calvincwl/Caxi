@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Event.h"
-#include <sstream>
 
 namespace Caxi
 {
@@ -13,7 +12,8 @@ namespace Caxi
         EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 
     protected:
-        KeyEvent(int keyCode) : m_KeyCode(keyCode) {}
+        KeyEvent(int keyCode)
+            : m_KeyCode(keyCode) {}
 
         int m_KeyCode;
     };
@@ -21,7 +21,8 @@ namespace Caxi
     class CAXI_API KeyPressedEvent : public KeyEvent
     {
     public:
-        KeyPressedEvent(int keyCode, int repeatCount) : KeyEvent(keyCode), m_RepeatCount(repeatCount) {}
+        KeyPressedEvent(int keyCode, int repeatCount)
+            : KeyEvent(keyCode), m_RepeatCount(repeatCount) {}
 
         int GetRepeatCount() const { return m_RepeatCount; }
 
@@ -41,7 +42,8 @@ namespace Caxi
     class CAXI_API KeyReleasedEvent : public KeyEvent
     {
     public:
-        KeyReleasedEvent(int keyCode) : KeyEvent(keyCode) {}
+        KeyReleasedEvent(int keyCode)
+            : KeyEvent(keyCode) {}
 
         std::string ToString() const override
         {

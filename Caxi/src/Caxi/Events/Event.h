@@ -1,6 +1,4 @@
 #pragma once
-#include <string>
-#include <functional>
 
 namespace Caxi
 {
@@ -52,7 +50,7 @@ namespace Caxi
         virtual int GetCategoryFlags() const = 0;
         virtual std::string ToString() const { return GetName(); }
 
-        inline bool IsInCategory(EventCategory category)
+        bool IsInCategory(EventCategory category)
         {
             return GetCategoryFlags() & category;
         }
@@ -67,7 +65,8 @@ namespace Caxi
         using EventFn = std::function<bool(T&)>;
 
     public:
-        EventDispatcher(Event& event) : m_Event(event) {}
+        EventDispatcher(Event& event)
+            : m_Event(event) {}
         
         template<typename T>
         bool Dispatch(EventFn<T> func)
