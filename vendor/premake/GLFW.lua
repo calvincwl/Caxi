@@ -1,12 +1,12 @@
 project "GLFW"
-	location "../../build"
+	location "%{wks.location}"
 	kind "StaticLib"
 	language "C"
 
 	targetdir ("../../bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("../../bin-int/" .. outputdir .. "/%{prj.name}")
 
-	prjdir = "../../Caxi/vendor/GLFW/"
+	prjdir = "%{wks.location}" .. "/../Caxi/vendor/GLFW/"
 	files
 	{
 		prjdir .. "include/GLFW/glfw3.h",

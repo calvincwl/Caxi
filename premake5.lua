@@ -66,14 +66,17 @@ project "Caxi"
 
     filter "configurations:Debug"
         defines "CX_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "CX_RELEASE"
+        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "CX_DIST"
+        buildoptions "/MD"
         optimize "On"
 
 project "Game"
@@ -113,12 +116,15 @@ project "Game"
 
     filter "configurations:Debug"
         defines "CX_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "CX_RELEASE"
+        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "CX_DIST"
+        buildoptions "/MD"
         optimize "On"
