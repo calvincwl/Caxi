@@ -3,21 +3,20 @@ project "GLFW"
 	kind "StaticLib"
 	language "C"
 
-	targetdir ("../../bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("../../bin-int/" .. outputdir .. "/%{prj.name}")
+    targetdir ("%{PremakeDir.target}")
+    objdir ("%{PremakeDir.object}")
 
-	prjdir = "%{wks.location}" .. "/../Caxi/vendor/GLFW/"
 	files
 	{
-		prjdir .. "include/GLFW/glfw3.h",
-		prjdir .. "include/GLFW/glfw3native.h",
-		prjdir .. "src/glfw_config.h",
-		prjdir .. "src/context.c",
-		prjdir .. "src/init.c",
-		prjdir .. "src/input.c",
-		prjdir .. "src/monitor.c",
-		prjdir .. "src/vulkan.c",
-		prjdir .. "src/window.c"
+		"%{PremakeDir.vendor}/include/GLFW/glfw3.h",
+		"%{PremakeDir.vendor}/include/GLFW/glfw3native.h",
+		"%{PremakeDir.vendor}/src/glfw_config.h",
+		"%{PremakeDir.vendor}/src/context.c",
+		"%{PremakeDir.vendor}/src/init.c",
+		"%{PremakeDir.vendor}/src/input.c",
+		"%{PremakeDir.vendor}/src/monitor.c",
+		"%{PremakeDir.vendor}/src/vulkan.c",
+		"%{PremakeDir.vendor}/src/window.c"
 	}
 	
 	filter "system:linux"
@@ -28,16 +27,16 @@ project "GLFW"
 
 		files
 		{
-			prjdir .. "src/x11_init.c",
-			prjdir .. "src/x11_monitor.c",
-			prjdir .. "src/x11_window.c",
-			prjdir .. "src/xkb_unicode.c",
-			prjdir .. "src/posix_time.c",
-			prjdir .. "src/posix_thread.c",
-			prjdir .. "src/glx_context.c",
-			prjdir .. "src/egl_context.c",
-			prjdir .. "src/osmesa_context.c",
-			prjdir .. "src/linux_joystick.c"
+			"%{PremakeDir.vendor}/src/x11_init.c",
+			"%{PremakeDir.vendor}/src/x11_monitor.c",
+			"%{PremakeDir.vendor}/src/x11_window.c",
+			"%{PremakeDir.vendor}/src/xkb_unicode.c",
+			"%{PremakeDir.vendor}/src/posix_time.c",
+			"%{PremakeDir.vendor}/src/posix_thread.c",
+			"%{PremakeDir.vendor}/src/glx_context.c",
+			"%{PremakeDir.vendor}/src/egl_context.c",
+			"%{PremakeDir.vendor}/src/osmesa_context.c",
+			"%{PremakeDir.vendor}/src/linux_joystick.c"
 		}
 
 		defines
@@ -51,15 +50,15 @@ project "GLFW"
 
 		files
 		{
-			prjdir .. "src/win32_init.c",
-			prjdir .. "src/win32_joystick.c",
-			prjdir .. "src/win32_monitor.c",
-			prjdir .. "src/win32_time.c",
-			prjdir .. "src/win32_thread.c",
-			prjdir .. "src/win32_window.c",
-			prjdir .. "src/wgl_context.c",
-			prjdir .. "src/egl_context.c",
-			prjdir .. "src/osmesa_context.c"
+			"%{PremakeDir.vendor}/src/win32_init.c",
+			"%{PremakeDir.vendor}/src/win32_joystick.c",
+			"%{PremakeDir.vendor}/src/win32_monitor.c",
+			"%{PremakeDir.vendor}/src/win32_time.c",
+			"%{PremakeDir.vendor}/src/win32_thread.c",
+			"%{PremakeDir.vendor}/src/win32_window.c",
+			"%{PremakeDir.vendor}/src/wgl_context.c",
+			"%{PremakeDir.vendor}/src/egl_context.c",
+			"%{PremakeDir.vendor}/src/osmesa_context.c"
 		}
 
 		defines 
