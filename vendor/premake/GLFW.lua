@@ -2,6 +2,7 @@ project "GLFW"
 	location "%{wks.location}"
 	kind "StaticLib"
 	language "C"
+    staticruntime "on"
 
     targetdir ("%{PremakeDir.target}")
     objdir ("%{PremakeDir.object}")

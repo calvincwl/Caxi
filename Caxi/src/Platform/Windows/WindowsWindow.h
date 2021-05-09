@@ -1,7 +1,8 @@
 #pragma once
 
-#include "GLFW/glfw3.h"
 #include "Caxi/Window.h"
+
+struct GLFWwindow;
 
 namespace Caxi
 {

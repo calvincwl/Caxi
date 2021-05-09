@@ -2,6 +2,7 @@ project "Game"
     location "%{wks.location}"
     kind "ConsoleApp"
     language "C++"
+    staticruntime "on"
 
     targetdir ("%{PremakeDir.target}")
     objdir ("%{PremakeDir.object}")

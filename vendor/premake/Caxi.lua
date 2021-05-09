@@ -2,6 +2,7 @@ project "Caxi"
     location "%{wks.location}"
     kind "SharedLib"
     language "C++"
+    staticruntime "off"
 
     targetdir ("%{PremakeDir.target}")
     objdir ("%{PremakeDir.object}")
@@ -38,7 +39,8 @@ project "Caxi"
         defines
         {
             "CX_PLATFORM_WINDOWS",
-            "CX_BUILD_DLL"
+            "CX_BUILD_DLL",
+            "GLFW_INCLUDE_NONE"
         }
 
         postbuildcommands
