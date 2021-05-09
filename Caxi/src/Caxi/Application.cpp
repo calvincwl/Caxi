@@ -6,12 +6,15 @@
 
 namespace Caxi
 {
-#define CX_BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
+    Application* Application::s_Instance = nullptr;
 
     Application::Application()
     {
+        CX_CORE_ASSERT(!s_Instance, "Application already exists!");
+        s_Instance = this;
+
         m_Window = std::unique_ptr<Window>(Window::Create());
-        m_Window->SetEventCallback(CX_BIND_EVENT_FN(OnEvent));
+        m_Window->SetEventCallback(CX_BIND_EVENT_FN(Application::OnEvent));
     }
 
     Application::~Application()
@@ -22,17 +25,19 @@ namespace Caxi
     void Application::PushLayer(Layer* layer)
     {
         m_LayerStack.PushLayer(layer);
+        layer->OnAttach();
     }
 
     void Application::PushOverlay(Layer* overlay)
     {
         m_LayerStack.PushOverlay(overlay);
+        overlay->OnAttach();
     }
 
     void Application::OnEvent(Event& e)
     {
         EventDispatcher dispatcher(e);
-        dispatcher.Dispatch<WindowCloseEvent>(CX_BIND_EVENT_FN(OnWindowClose));
+        dispatcher.Dispatch<WindowCloseEvent>(CX_BIND_EVENT_FN(Application::OnWindowClose));
 
         for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
         {
@@ -49,7 +54,7 @@ namespace Caxi
         while (m_Running)
         {
             glClearColor(0, 1, 1, 1);
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            glClear(GL_COLOR_BUFFER_BIT);
 
             for (Layer* layer : m_LayerStack)
             {

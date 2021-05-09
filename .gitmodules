@@ -4,3 +4,6 @@
 [submodule "Caxi/vendor/GLFW"]
 	path = Caxi/vendor/GLFW
 	url = git@github.com:glfw/glfw.git
+[submodule "Caxi/vendor/imgui"]
+	path = Caxi/vendor/imgui
+	url = git@github.com:ocornut/imgui.git

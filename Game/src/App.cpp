@@ -8,12 +8,12 @@ public:
 
     void OnUpdate() override
     {
-        CX_INFO("ExampleLayer::Update");
+        //CX_INFO("ExampleLayer::Update");
     }
 
     void OnEvent(Caxi::Event& event) override
     {
-        CX_TRACE("{0}", event);
+        //CX_TRACE("{0}", event);
     }
 };
 
@@ -22,7 +22,8 @@ class Game : public Caxi::Application
 public:
     Game()
     {
-        //PushLayer(new ExampleLayer());
+        PushLayer(new ExampleLayer());
+        PushOverlay(new Caxi::ImGuiLayer());
     }
 
     ~Game()

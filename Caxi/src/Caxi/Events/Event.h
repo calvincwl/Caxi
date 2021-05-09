@@ -20,6 +20,7 @@ namespace Caxi
 
         KeyPressed,
         KeyReleased,
+        KeyTyped,
 
         MouseButtonPressed,
         MouseButtonReleased,

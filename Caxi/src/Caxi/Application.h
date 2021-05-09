@@ -20,12 +20,18 @@ namespace Caxi
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* overlay);
 
+        Window& GetWindow() { return *m_Window; }
+
+        static Application& Get() { return *s_Instance; }
+
     private:
         bool OnWindowClose(WindowCloseEvent& e);
 
         std::unique_ptr<Window> m_Window;
         bool m_Running = true;
         LayerStack m_LayerStack;
+
+        static Application* s_Instance;
     };
 
     // To be defined in CLIENT
