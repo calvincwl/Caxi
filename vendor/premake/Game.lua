@@ -2,7 +2,7 @@ project "Game"
     location "%{wks.location}"
     kind "ConsoleApp"
     language "C++"
-    staticruntime "on"
+    staticruntime "off"
 
     targetdir ("%{PremakeDir.target}")
     objdir ("%{PremakeDir.object}")
@@ -26,7 +26,6 @@ project "Game"
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines
@@ -36,15 +35,15 @@ project "Game"
 
     filter "configurations:Debug"
         defines "CX_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines "CX_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
 
     filter "configurations:Dist"
         defines "CX_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
