@@ -46,7 +46,7 @@ project "Caxi"
 
         postbuildcommands
         {
-            ("{COPY} %{cfg.buildtarget.relpath} " .. "%{PremakeDir.root}/bin/%{PremakeDir.output}/Game")
+            ("{COPY} %{cfg.buildtarget.relpath} " .. "\"%{PremakeDir.root}/bin/%{PremakeDir.output}/Game/\"")
         }
 
     filter "configurations:Debug"

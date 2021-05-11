@@ -24,8 +24,11 @@ IncludeDir["Glad"] = "%{PremakeDir.root}/Caxi/vendor/Glad/include"
 IncludeDir["Glad"] = "%{PremakeDir.root}/Caxi/vendor/Glad/include"
 IncludeDir["ImGui"] = "%{PremakeDir.root}/Caxi/vendor/ImGui"
 
+group "Dependencies"
 include "vendor/premake/GLFW.lua"
 include "vendor/premake/Glad.lua"
 include "vendor/premake/imgui.lua"
+group ""
+
 include "vendor/premake/Caxi.lua"
 include "vendor/premake/Game.lua"

@@ -12,8 +12,6 @@ int main(int argc, char** argv)
     auto app = Caxi::CreateApplication();
     app->Run();
     delete app;
-    
-    return 0;
 }
 
 #endif
