@@ -13,7 +13,11 @@ public:
 
     void OnEvent(Caxi::Event& event) override
     {
-        //CX_TRACE("{0}", event);
+        if (event.GetEventType() == Caxi::EventType::KeyPressed)
+        {
+            auto& e = dynamic_cast<Caxi::KeyPressedEvent&>(event);
+            CX_TRACE("{0}", static_cast<char>(e.GetKeyCode()));
+        }
     }
 };
 

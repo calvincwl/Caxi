@@ -3,6 +3,7 @@
 
 #include "Caxi/Log.h"
 #include "glad/glad.h"
+#include "Caxi/Input.h"
 
 namespace Caxi
 {

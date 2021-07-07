@@ -1,28 +1,29 @@
 #pragma once
 
 #include "Event.h"
+#include "Caxi/KeyCodes.h"
 
 namespace Caxi
 {
     class CAXI_API KeyEvent : public Event
     {
     public:
-        int GetKeyCode() const { return m_KeyCode; }
+        KeyCode GetKeyCode() const { return m_KeyCode; }
 
         EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 
     protected:
-        KeyEvent(int keyCode)
-            : m_KeyCode(keyCode) {}
+        KeyEvent(const KeyCode keycode)
+            : m_KeyCode(keycode) {}
 
-        int m_KeyCode;
+        KeyCode m_KeyCode;
     };
 
     class CAXI_API KeyPressedEvent : public KeyEvent
     {
     public:
-        KeyPressedEvent(int keyCode, int repeatCount)
-            : KeyEvent(keyCode), m_RepeatCount(repeatCount) {}
+        KeyPressedEvent(const KeyCode keycode, const int repeatCount)
+            : KeyEvent(keycode), m_RepeatCount(repeatCount) {}
 
         int GetRepeatCount() const { return m_RepeatCount; }
 
@@ -42,8 +43,8 @@ namespace Caxi
     class CAXI_API KeyReleasedEvent : public KeyEvent
     {
     public:
-        KeyReleasedEvent(int keyCode)
-            : KeyEvent(keyCode) {}
+        KeyReleasedEvent(const KeyCode keycode)
+            : KeyEvent(keycode) {}
 
         std::string ToString() const override
         {
@@ -58,7 +59,7 @@ namespace Caxi
     class CAXI_API KeyTypedEvent : public KeyEvent
     {
     public:
-        KeyTypedEvent(int keycode)
+        KeyTypedEvent(const KeyCode keycode)
             : KeyEvent(keycode) {}
 
         std::string ToString() const override

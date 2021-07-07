@@ -47,12 +47,14 @@ namespace Caxi
     class CAXI_API Event
     {
     public:
+        virtual ~Event() = default;
+
         virtual EventType GetEventType() const = 0;
         virtual const char* GetName() const = 0;
         virtual int GetCategoryFlags() const = 0;
         virtual std::string ToString() const { return GetName(); }
 
-        bool IsInCategory(EventCategory category)
+        bool IsInCategory(EventCategory category) const
         {
             return GetCategoryFlags() & category;
         }

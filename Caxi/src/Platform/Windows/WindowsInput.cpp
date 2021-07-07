@@ -6,35 +6,42 @@
 
 namespace Caxi
 {
-    bool WindowsInput::IsKeyPressedImpl(int keycode)
+    Input* Input::s_Instance = new WindowsInput();
+
+    bool WindowsInput::IsKeyPressedImpl(const KeyCode keycode)
     {
-        auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-        auto state = glfwGetKey(window, keycode);
+        const auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+        const auto state = glfwGetKey(window, keycode);
         return state == GLFW_PRESS || state == GLFW_REPEAT;
     }
 
-    bool WindowsInput::IsMouseButtonPressedImpl(int button)
+    bool WindowsInput::IsMouseButtonPressedImpl(const MouseCode button)
     {
-        auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-        auto state = glfwGetMouseButton(window, button);
+        const auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+        const auto state = glfwGetMouseButton(window, button);
         return state == GLFW_PRESS;
+    }
+
+    std::pair<float, float> WindowsInput::GetMousePositionImpl()
+    {
+        const auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+        double xpos, ypos;
+        glfwGetCursorPos(window, &xpos, &ypos);
+
+        return { static_cast<float>(xpos), static_cast<float>(ypos) };
     }
 
     float WindowsInput::GetMouseXImpl()
     {
-        auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-        double xpos, ypos;
-        glfwGetCursorPos(window, &xpos, &ypos);
+        auto [x, y] = GetMousePositionImpl();
 
-        return (float)xpos;
+        return x;
     }
 
     float WindowsInput::GetMouseYImpl()
     {
-        auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-        double xpos, ypos;
-        glfwGetCursorPos(window, &xpos, &ypos);
+        auto [x, y] = GetMousePositionImpl();
 
-        return (float)ypos;
+        return y;
     }
 }
